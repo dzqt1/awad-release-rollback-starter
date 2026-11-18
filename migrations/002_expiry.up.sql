@@ -1,0 +1,8 @@
+ALTER TABLE links ADD COLUMN expires_at TEXT;
+
+CREATE TABLE feature_flags (
+  name    TEXT PRIMARY KEY,
+  enabled INTEGER NOT NULL DEFAULT 0 CHECK (enabled IN (0, 1))
+);
+
+INSERT INTO feature_flags (name, enabled) VALUES ('expiry', 0);

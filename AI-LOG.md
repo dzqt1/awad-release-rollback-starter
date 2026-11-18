@@ -4,3 +4,10 @@ Asked for: Đóng gói linkbox thành image v1 đáp ứng 15 kiểm tra I1-I15,
 Kept: 
 Changed: 
 Rejected:
+
+## 2026-11-18 — Cài đặt tính năng link hết hạn phía sau feature flag
+Tool: Copilot
+Asked for: Cài đặt đúng docs/CHANGE.md với migration 002, flag expiry trong database, tương thích v1 và không sửa tools hoặc test cũ.
+Kept:
+Changed:
+Rejected:

@@ -7,7 +7,15 @@ if (config.env === 'production' && (!config.adminToken || config.adminToken === 
   process.exit(1);
 }
 
-const server = createApp(open(config.dbPath), config);
+const db = open(config.dbPath);
+const linksColumns = db.prepare('PRAGMA table_info(links)').all().map((column) => column.name);
+const hasFlagsTable = db.prepare("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'feature_flags'").get();
+if (!linksColumns.includes('expires_at') || !hasFlagsTable) {
+  console.error('Refusing to start: database schema 002 is required (links.expires_at and feature_flags)');
+  process.exit(1);
+}
+
+const server = createApp(db, config);
 
 let shuttingDown = false;
 const shutdown = (signal) => {
@@ -21,10 +29,6 @@ const shutdown = (signal) => {
     clearTimeout(forceExit);
     process.exit(0);
   });
-
-  if (typeof server.closeIdleConnections === 'function') {
-    server.closeIdleConnections();
-  }
 };
 
 process.once('SIGTERM', () => shutdown('SIGTERM'));
