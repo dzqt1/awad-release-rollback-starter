@@ -20,7 +20,7 @@ Image được build trước khi chạy tải: `docker build --build-arg APP_VE
 
 | # | Bước | Lệnh | Schema sau bước | Đang phục vụ | Cách undo | Phiên bản chạy được trên schema này |
 |---|---|---|---|---|---|---|
-| 0 | Khởi đầu sạch (chỉ khi chạy thử) | `docker compose down -v` rồi `docker compose up -d --build router` | không có (volume trống) | không có, chỉ router | `docker compose down -v` | chưa có |
+| 0 | Khởi đầu sạch (chỉ khi chạy thử) | `docker compose down -v` rồi (`export APP_ENV=production`) `docker compose up -d --build router` | không có (volume trống) | không có, chỉ router | `docker compose down -v` | chưa có |
 | 1 | Migrate lên 001 bằng image v1 | `npm run migrate:image -- v1` | 001 | không có | `npm run migrate:image -- v1 down`, hoặc `docker compose down -v` trên volume trống | chỉ v1. v2 từ chối khởi động (nó kiểm tra schema lúc start) |
 | 2 | Đưa v1 vào một slot | `BLUE_TAG=v1 docker compose up -d --no-deps blue` (chờ healthy) | 001 | v1, 100% | `docker compose stop blue` | v1 |
 | 3 | Migrate lên 002 (expand) **trước** mọi code v2 | `npm run migrate:image -- v2` | **002** | v1, 100% (vẫn chạy trên schema mới) | `npm run migrate:image -- v2 down` (xem mục 5: chỉ an toàn khi chưa có link nào có `expires_at`, và không bao giờ khi v2 đang phục vụ) | **v1 và v2** |

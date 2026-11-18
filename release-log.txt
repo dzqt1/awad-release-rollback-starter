@@ -1,0 +1,104 @@
+ Image linkbox-router Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 560B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 120B done
+#2 DONE 0.0s
+
+#3 [auth] library/node:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/node:22-alpine
+#4 DONE 1.1s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 31B done
+#6 DONE 0.0s
+
+#7 [1/2] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#7 resolve docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a 0.0s done
+#7 DONE 0.0s
+
+#8 [2/2] COPY router.js /router.js
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 exporting manifest sha256:5e2285fc74d3f52b6851a9ce26574acc09a0c4877ce308356179166e14818715 done
+#9 exporting config sha256:36a9d42c9512749830847c44f718449514b26a8ae22b3260c7fed7cc1aad4510 done
+#9 exporting attestation manifest sha256:7a170cca1e23fc9c0799feae24816a40c1cfe8afb22d1fa930f1a91125d60979 0.0s done
+#9 exporting manifest list sha256:39f2522c65283b199e2ccf0ae60693ac48ad91aa5f7be98dede53ed2a018ebb6
+#9 exporting manifest list sha256:39f2522c65283b199e2ccf0ae60693ac48ad91aa5f7be98dede53ed2a018ebb6 0.1s done
+#9 naming to docker.io/library/linkbox-router:latest done
+#9 unpacking to docker.io/library/linkbox-router:latest 0.0s done
+#9 DONE 0.1s
+
+#10 resolving provenance for metadata file
+#10 DONE 0.0s
+ Image linkbox-router Built 
+ Network linkbox_default Creating 
+ Network linkbox_default Creating 
+ Network linkbox_default Created 
+ Network linkbox_default Created 
+ Container linkbox-router-1 Creating 
+ Container linkbox-router-1 Created 
+ Container linkbox-router-1 Starting 
+ Container linkbox-router-1 Started 
+
+> awad-release-rollback-starter@1.0.0 migrate:image
+> node deploy/migrate.js v1
+
+ Volume linkbox_data Creating 
+ Volume linkbox_data Creating 
+ Volume linkbox_data Created 
+ Volume linkbox_data Created 
+ Container linkbox-blue-run-cfd0016f9948 Creating 
+ Container linkbox-blue-run-cfd0016f9948 Created 
+(node:1) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+applied  001_init
+ Container linkbox-blue-1 Creating 
+ Container linkbox-blue-1 Created 
+ Container linkbox-blue-1 Starting 
+ Container linkbox-blue-1 Started 
+
+> awad-release-rollback-starter@1.0.0 migrate:image
+> node deploy/migrate.js v2
+
+ Container linkbox-blue-run-3e4c9fdfbbf8 Creating 
+ Container linkbox-blue-run-3e4c9fdfbbf8 Created 
+applied  002_expiry
+(node:1) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+> awad-release-rollback-starter@1.0.0 release
+> node deploy/release.js v2
+
+done: green is at 100% with v2; blue remains running
+
+> awad-release-rollback-starter@1.0.0 rollback
+> node deploy/rollback.js
+
+done
+
+> awad-release-rollback-starter@1.0.0 release
+> node deploy/release.js v2
+
+done: green is at 100% with v2; blue remains running
+
+> awad-release-rollback-starter@1.0.0 drill:build
+> node tools/drills/build.js v2
+
+sha256:1ed4c9da35e49b411df738ea9ed5bc7ff2d16dfa6b917f42e14eeb32e183e191
+
+> awad-release-rollback-starter@1.0.0 release
+> node deploy/release.js v3-bad
+
+gate rollback: canary error rate 29.7% (11/37)
+done
