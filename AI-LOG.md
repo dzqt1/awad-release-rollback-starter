@@ -11,3 +11,10 @@ Asked for: Cài đặt đúng docs/CHANGE.md với migration 002, flag expiry tr
 Kept:
 Changed:
 Rejected:
+
+## 2026-11-18 — Viết release có canary gate và rollback traffic
+Tool: Copilot
+Asked for: Viết deploy/release.js và deploy/rollback.js theo staged release, Docker health, canary error gate và xác nhận rollback bằng router state.
+Kept:
+Changed:
+Rejected:

@@ -1,0 +1,186 @@
+=== load start 2026-11-18T10:32:12.379Z target=http://127.0.0.1:8080 tools=4b56096c90ea819d weights=blue:100,green:0
+T+0001 total=37 fail=0 v[1.0.0@blue]=37/0 weights=blue:100,green:0
+T+0002 total=39 fail=0 v[1.0.0@blue]=39/0 weights=blue:100,green:0
+T+0003 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0004 total=39 fail=0 v[1.0.0@blue]=39/0 weights=blue:100,green:0
+T+0005 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0006 total=39 fail=0 v[1.0.0@blue]=39/0 weights=blue:100,green:0
+T+0007 total=38 fail=0 v[1.0.0@blue]=38/0 weights=blue:100,green:0
+T+0008 total=36 fail=0 v[1.0.0@blue]=36/0 weights=blue:100,green:0
+T+0009 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0010 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0011 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0012 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0013 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0014 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0015 total=39 fail=0 v[1.0.0@blue]=39/0 weights=blue:100,green:0
+T+0016 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0017 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0018 total=38 fail=0 v[1.0.0@blue]=38/0 weights=blue:100,green:0
+T+18.9s MARK migration up from linkbox:v2
+T+0019 total=34 fail=0 v[1.0.0@blue]=34/0 weights=blue:100,green:0
+T+19.9s MARK release v2 preparing slot green
+T+0020 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0021 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0022 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0023 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0024 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+24.9s WEIGHTS blue=90 green=10
+T+24.9s MARK release v2 slot green healthy
+T+24.9s MARK release v2 canary green=10%
+T+0025 total=40 fail=0 v[1.0.0@blue]=39/0 v[2.0.0@green]=1/0 weights=blue:90,green:10
+T+0026 total=40 fail=0 v[2.0.0@green]=5/0 v[1.0.0@blue]=35/0 weights=blue:90,green:10
+T+0027 total=38 fail=0 v[1.0.0@blue]=34/0 v[2.0.0@green]=4/0 weights=blue:90,green:10
+T+0028 total=37 fail=0 v[1.0.0@blue]=36/0 v[2.0.0@green]=1/0 weights=blue:90,green:10
+T+0029 total=37 fail=0 v[2.0.0@green]=5/0 v[1.0.0@blue]=32/0 weights=blue:90,green:10
+T+0030 total=40 fail=0 v[1.0.0@blue]=39/0 v[2.0.0@green]=1/0 weights=blue:90,green:10
+T+0031 total=40 fail=0 v[1.0.0@blue]=38/0 v[2.0.0@green]=2/0 weights=blue:90,green:10
+T+0032 total=40 fail=0 v[1.0.0@blue]=34/0 v[2.0.0@green]=6/0 weights=blue:90,green:10
+T+0033 total=40 fail=0 v[1.0.0@blue]=37/0 v[2.0.0@green]=3/0 weights=blue:90,green:10
+T+0034 total=40 fail=0 v[1.0.0@blue]=33/0 v[2.0.0@green]=7/0 weights=blue:90,green:10
+T+35.1s WEIGHTS blue=75 green=25
+T+35.1s MARK release v2 canary green=25%
+T+0035 total=40 fail=0 v[1.0.0@blue]=37/0 v[2.0.0@green]=3/0 weights=blue:75,green:25
+T+0036 total=34 fail=0 v[1.0.0@blue]=25/0 v[2.0.0@green]=9/0 weights=blue:75,green:25
+T+0037 total=38 fail=0 v[2.0.0@green]=9/0 v[1.0.0@blue]=29/0 weights=blue:75,green:25
+T+0038 total=40 fail=0 v[1.0.0@blue]=32/0 v[2.0.0@green]=8/0 weights=blue:75,green:25
+T+0039 total=40 fail=0 v[1.0.0@blue]=32/0 v[2.0.0@green]=8/0 weights=blue:75,green:25
+T+40.2s WEIGHTS blue=0 green=100
+T+40.2s MARK release v2 promoted green=100%
+T+0040 total=40 fail=0 v[1.0.0@blue]=21/0 v[2.0.0@green]=19/0 weights=blue:0,green:100
+T+0041 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0042 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0043 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0044 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0045 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0046 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0047 total=37 fail=0 v[2.0.0@green]=37/0 weights=blue:0,green:100
+T+0048 total=39 fail=0 v[2.0.0@green]=39/0 weights=blue:0,green:100
+T+0049 total=37 fail=0 v[2.0.0@green]=37/0 weights=blue:0,green:100
+T+0050 total=39 fail=0 v[2.0.0@green]=39/0 weights=blue:0,green:100
+T+0051 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0052 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0053 total=40 fail=0 v[2.0.0@green]=32/0 v[1.0.0@blue]=8/0 weights=blue:0,green:100
+T+53.4s WEIGHTS blue=100 green=0
+T+53.4s MARK rollback traffic to blue
+T+0054 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0055 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0056 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0057 total=39 fail=0 v[1.0.0@blue]=39/0 weights=blue:100,green:0
+T+0058 total=33 fail=0 v[1.0.0@blue]=33/0 weights=blue:100,green:0
+T+0059 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0060 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0061 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0062 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0063 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0064 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0065 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+0066 total=40 fail=0 v[1.0.0@blue]=40/0 weights=blue:100,green:0
+T+66.6s MARK migration up from linkbox:v2
+T+67.1s MARK release v2 preparing slot green
+T+0067 total=38 fail=0 v[1.0.0@blue]=35/0 v[2.0.0@green]=3/0 weights=blue:100,green:0
+T+67.6s WEIGHTS blue=90 green=10
+T+67.6s MARK release v2 slot green healthy
+T+67.6s MARK release v2 canary green=10%
+T+0069 total=40 fail=0 v[1.0.0@blue]=33/0 v[2.0.0@green]=7/0 weights=blue:90,green:10
+T+0070 total=38 fail=0 v[1.0.0@blue]=38/0 weights=blue:90,green:10
+T+0071 total=37 fail=0 v[1.0.0@blue]=35/0 v[2.0.0@green]=2/0 weights=blue:90,green:10
+T+0072 total=39 fail=0 v[1.0.0@blue]=36/0 v[2.0.0@green]=3/0 weights=blue:90,green:10
+T+0073 total=40 fail=0 v[1.0.0@blue]=35/0 v[2.0.0@green]=5/0 weights=blue:90,green:10
+T+0074 total=40 fail=0 v[1.0.0@blue]=32/0 v[2.0.0@green]=8/0 weights=blue:90,green:10
+T+0075 total=40 fail=0 v[1.0.0@blue]=33/0 v[2.0.0@green]=7/0 weights=blue:90,green:10
+T+0076 total=40 fail=0 v[1.0.0@blue]=37/0 v[2.0.0@green]=3/0 weights=blue:90,green:10
+T+0077 total=40 fail=0 v[1.0.0@blue]=34/0 v[2.0.0@green]=6/0 weights=blue:90,green:10
+T+0078 total=36 fail=0 v[1.0.0@blue]=31/0 v[2.0.0@green]=5/0 weights=blue:90,green:10
+T+77.8s WEIGHTS blue=75 green=25
+T+77.8s MARK release v2 canary green=25%
+T+0079 total=37 fail=0 v[1.0.0@blue]=34/0 v[2.0.0@green]=3/0 weights=blue:75,green:25
+T+0080 total=40 fail=0 v[1.0.0@blue]=29/0 v[2.0.0@green]=11/0 weights=blue:75,green:25
+T+0081 total=39 fail=0 v[2.0.0@green]=16/0 v[1.0.0@blue]=23/0 weights=blue:75,green:25
+T+0082 total=40 fail=0 v[1.0.0@blue]=26/0 v[2.0.0@green]=14/0 weights=blue:75,green:25
+T+0083 total=40 fail=0 v[1.0.0@blue]=29/0 v[2.0.0@green]=11/0 weights=blue:75,green:25
+T+82.9s WEIGHTS blue=0 green=100
+T+82.9s MARK release v2 promoted green=100%
+T+0084 total=40 fail=0 v[2.0.0@green]=34/0 v[1.0.0@blue]=6/0 weights=blue:0,green:100
+T+0085 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0086 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0087 total=35 fail=0 v[2.0.0@green]=35/0 weights=blue:0,green:100
+T+0088 total=39 fail=0 v[2.0.0@green]=39/0 weights=blue:0,green:100
+T+0089 total=38 fail=0 v[2.0.0@green]=38/0 weights=blue:0,green:100
+T+0090 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0091 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0092 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0093 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0094 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0095 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0096 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0097 total=34 fail=0 v[2.0.0@green]=34/0 weights=blue:0,green:100
+T+0098 total=38 fail=0 v[2.0.0@green]=38/0 weights=blue:0,green:100
+T+97.7s MARK release v3-bad preparing slot blue
+T+0099 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0100 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0101 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0102 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0103 total=36 fail=0 v[2.0.0@green]=36/0 weights=blue:0,green:100
+T+102.7s WEIGHTS blue=10 green=90
+T+102.7s MARK release v3-bad slot blue healthy
+T+102.7s MARK release v3-bad canary blue=10%
+T+0104 total=36 fail=0 v[2.0.0@green]=34/0 v[2.0.1-bad@blue]=2/0 weights=blue:10,green:90
+T+103.7s FAIL error GET /r/4z9kme59 -> 500 version=2.0.1-bad slot=blue
+T+0105 total=40 fail=1 v[2.0.1-bad@blue]=3/1 v[2.0.0@green]=37/0 weights=blue:10,green:90
+T+105.3s FAIL error GET /links/yx2xkb42 -> 500 version=2.0.1-bad slot=blue
+T+105.5s FAIL error GET /links/ny9nkakf -> 500 version=2.0.1-bad slot=blue
+T+0106 total=40 fail=2 v[2.0.0@green]=33/0 v[2.0.1-bad@blue]=7/2 weights=blue:10,green:90
+T+105.7s FAIL error GET /links/vtqrykcv -> 500 version=2.0.1-bad slot=blue
+T+105.7s FAIL error GET /r/ptbqr4eh -> 500 version=2.0.1-bad slot=blue
+T+0107 total=40 fail=2 v[2.0.0@green]=36/0 v[2.0.1-bad@blue]=4/2 weights=blue:10,green:90
+T+107.4s FAIL error GET /r/4mac6f8u -> 500 version=2.0.1-bad slot=blue
+T+0108 total=40 fail=1 v[2.0.0@green]=35/0 v[2.0.1-bad@blue]=5/1 weights=blue:10,green:90
+T+0109 total=40 fail=0 v[2.0.0@green]=36/0 v[2.0.1-bad@blue]=4/0 weights=blue:10,green:90
+T+0110 total=40 fail=0 v[2.0.0@green]=36/0 v[2.0.1-bad@blue]=4/0 weights=blue:10,green:90
+T+0111 total=40 fail=0 v[2.0.0@green]=38/0 v[2.0.1-bad@blue]=2/0 weights=blue:10,green:90
+T+0112 total=40 fail=0 v[2.0.0@green]=32/0 v[2.0.1-bad@blue]=8/0 weights=blue:10,green:90
+T+112.1s FAIL error GET /links/kbkz84af -> 500 version=2.0.1-bad slot=blue
+T+0113 total=32 fail=1 v[2.0.0@green]=31/0 v[2.0.1-bad@blue]=1/1 weights=blue:10,green:90
+T+112.9s WEIGHTS blue=0 green=100
+T+112.9s MARK release v3-bad gate stopped canary blue: 7/40=17.5%
+T+0114 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0115 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0116 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0117 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0118 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0119 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0120 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0121 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0122 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0123 total=38 fail=0 v[2.0.0@green]=38/0 weights=blue:0,green:100
+T+0124 total=34 fail=0 v[2.0.0@green]=34/0 weights=blue:0,green:100
+T+0125 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0126 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0127 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0128 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0129 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0130 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0131 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0132 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0133 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0134 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0135 total=35 fail=0 v[2.0.0@green]=35/0 weights=blue:0,green:100
+T+0136 total=37 fail=0 v[2.0.0@green]=37/0 weights=blue:0,green:100
+T+0137 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0138 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0139 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0140 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0141 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0142 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0143 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0144 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0145 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0146 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0147 total=40 fail=0 v[2.0.0@green]=40/0 weights=blue:0,green:100
+T+0148 total=36 fail=0 v[2.0.0@green]=36/0 weights=blue:0,green:100
+T+0149 total=37 fail=0 v[2.0.0@green]=37/0 weights=blue:0,green:100
+T+0150 total=39 fail=0 v[2.0.0@green]=39/0 weights=blue:0,green:100
+FINAL total=5843 ok=5836 error=7 network=0 contract=0 lost=0
+BY VERSION 1.0.0: 2518 answered, 0 failed | 2.0.0: 3285 answered, 0 failed | 2.0.1-bad: 40 answered, 7 failed
+RESULT: 7 failed requests. Judge the run with: npm run check -- log
