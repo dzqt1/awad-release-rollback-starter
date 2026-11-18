@@ -84,3 +84,28 @@ không để lỗi xảy ra lúc phục vụ request. Khởi động vẫn KHÔN
   (1) link hết hạn trong lúc v1 phục vụ thì chuyện gì xảy ra (v1 xử lý ra sao)?
   (2) link do v1 tạo khi flag đang bật có expires_at không?
   (3) sau khi rollback về v1, flag nằm ở trạng thái nào và ai phải tắt nó?
+
+## Brief 3: Release and rollback scripts
+
+**Việc cần làm:** Viết deploy/release.js (npm run release -- <tag>) và deploy/rollback.js (npm run rollback).
+
+**release.js phải:**
+- Đưa image vào slot đang rảnh, giữ slot cũ chạy sau khi xong.
+- Chờ Docker báo healthy rồi mới đổi trọng số đầu tiên (không dùng timer).
+- Chuyển traffic theo nấc: ít nhất 2 nấc dưới 100%, nấc đầu <= 25% và >= 10 giây.
+- Trong lúc chờ, đọc GET :8081/state, tính errors/requests của slot canary, và tự quay lại
+  nếu tỉ lệ lỗi vượt ngưỡng sau một số request tối thiểu. KHÔNG dùng /health để quyết định.
+- Ngưỡng và số request tối thiểu đặt thành hằng số có tên, kèm comment lý do.
+
+**rollback.js phải:** một lệnh, chuyển 100% sang slot kia, rồi xác nhận bằng GET :8081/state
+trước khi in "done".
+
+**Giới hạn:**
+- KHÔNG sửa tools/, test/app.test.js, src/, migrations/ hay Dockerfile.
+- Chỉ dùng Node chuẩn, không thêm dependency, không dùng shell script.
+
+**Xong khi:** chạy đủ chuỗi lệnh trong README bước 6 dưới load,
+rồi `npm run check -- log` đạt L0–L9, đặc biệt L3 = 0 lỗi ngoài canary xấu,
+L7 bản v3-bad <= 25% traffic, L8 <= 5 phút, và release-log.txt cho thấy gate tự dừng.
+
+**Cách làm việc:** Nếu có request lỗi, phân tích log trước khi đề xuất sửa. Không sửa tools/.
