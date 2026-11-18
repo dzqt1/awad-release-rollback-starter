@@ -21,3 +21,66 @@
 
 **Cách làm việc:** Nếu một check đỏ, giải thích nguyên nhân và đề xuất sửa trong code/Dockerfile.
 Không sửa check. Cuối cùng liệt kê từng file đã thay đổi.
+
+## Brief 2: Change (v2): links can expire, behind a flag
+
+**Việc cần làm:** Cài đặt đúng docs/CHANGE.md (đính kèm, đọc kỹ trước khi viết code).
+Chỉ sửa src/, migrations/002_*.up.sql, migrations/002_*.down.sql và file test MỚI.
+
+**Schema (migration 002):**
+- Thêm cột nullable links.expires_at và bảng/cột lưu flag. Chỉ "expand": không đổi tên,
+  không xóa, không đổi kiểu bất cứ thứ gì v1 đang đọc hay ghi.
+- Hàng cũ có expires_at NULL và không bao giờ hết hạn.
+- File .down.sql phải chạy được trên SQLite của image (kiểm tra phiên bản SQLite có hỗ trợ
+  DROP COLUMN không; nếu không thì dùng cách tạo lại bảng).
+- Không sửa migration 001.
+
+**Flag `expiry`:**
+- Lưu trong database, mặc định tắt. Không dùng biến môi trường.
+- Mọi instance thấy thay đổi trong 2 giây mà không restart (không cache lâu hơn 1 giây).
+- PUT /admin/flags/expiry với header x-admin-token và body {"enabled": true|false}:
+  200 kèm trạng thái mới; 401 khi token sai hoặc thiếu. Body sai kiểu (enabled không phải boolean) thì 400.
+- GET /version thêm trường flags: {"version":"2.0.0","env":"...","flags":{"expiry":false}}.
+
+**Flag TẮT (phải giống v1):**
+- Bỏ qua expiresInSeconds trong body.
+- MỌI response đều có "expiresAt": null, kể cả với link đã có expires_at từ lúc flag bật.
+- GET /r/:code luôn redirect (302) và đếm hit, kể cả link đã hết hạn.
+
+**Flag BẬT:**
+- POST /links có expiresInSeconds hợp lệ: 201, expiresAt là chuỗi ISO 8601.
+- Không có expiresInSeconds: 201, expiresAt null.
+- expiresInSeconds không phải số nguyên dương (số thực, 0, âm, chuỗi, null, quá lớn
+  làm ngày bị overflow): 400, tuyệt đối không được 500.
+- GET /r/:code chưa hết hạn: 302 và đếm hit. Đã hết hạn: 410 với {"error":"expired"} và KHÔNG đếm hit.
+  Việc kiểm tra hết hạn và đếm hit nằm trong một câu lệnh SQL, không tách hai bước.
+- GET /links/:code và GET /links: 200 kèm expiresAt, hết hạn hay chưa.
+
+**Khởi động:** v2 kiểm tra schema khi start; thiếu cột expires_at thì thoát với lỗi rõ ràng,
+không để lỗi xảy ra lúc phục vụ request. Khởi động vẫn KHÔNG chạy migration (I15).
+
+**Tương thích v1:** Kiểm tra mọi câu SQL của v1 vẫn chạy đúng trên schema 002
+(nhất là SELECT * và INSERT không liệt kê cột). Mọi trường v1 trả về vẫn còn nguyên.
+
+**Giới hạn:**
+- KHÔNG sửa bất cứ thứ gì trong tools/ và test/app.test.js. Được ĐỌC tools/check.js để biết
+  check mong đợi định dạng nào, nhưng không được sửa.
+- Không sửa Dockerfile, .dockerignore, env/, deploy/. Nếu cần sửa Dockerfile
+  (ví dụ để copy migration mới) thì báo lại trước, không tự sửa.
+- Không làm hỏng phần v1: I1–I15 phải còn xanh.
+- Test mới viết ở file riêng, ví dụ test/expiry.test.js.
+
+**Xong khi:**
+- `npm test` xanh (gồm test mới và test của client cũ).
+- `npm run check -- change` xanh (T3, F1–F7).
+- `npm run check -- compat` xanh (C1–C4).
+- Build với --build-arg APP_VERSION=2.0.0, rồi `npm run check -- image --new=linkbox:v2` vẫn 15/15.
+- `git diff starter -- tools/` rỗng và fingerprint là 4b56096c90ea819d.
+
+**Cách làm việc:**
+- Trước khi code, liệt kê những chỗ spec còn mơ hồ và cách bạn định xử lý.
+- Nếu một check đỏ, giải thích nguyên nhân và sửa code, không sửa check.
+- Cuối cùng liệt kê từng file đã thay đổi và trả lời ba câu để tôi viết RELEASE.md:
+  (1) link hết hạn trong lúc v1 phục vụ thì chuyện gì xảy ra (v1 xử lý ra sao)?
+  (2) link do v1 tạo khi flag đang bật có expires_at không?
+  (3) sau khi rollback về v1, flag nằm ở trạng thái nào và ai phải tắt nó?
