@@ -1,7 +1,21 @@
-# It builds and it runs. That is all that can be said for it.
-FROM node:latest
+FROM node:22.13-alpine3.21
+
 WORKDIR /app
-COPY . .
-ENV ADMIN_TOKEN=dev-secret
-ENV APP_VERSION=1.0.0
-CMD npm start
+
+ARG APP_VERSION=dev
+ENV APP_VERSION=${APP_VERSION}
+
+COPY --chown=node:node src ./src
+COPY --chown=node:node migrations ./migrations
+
+RUN mkdir -p /data && chown node:node /data
+VOLUME /data
+
+USER node
+
+EXPOSE 3000
+
+HEALTHCHECK --interval=5s --timeout=3s --start-period=5s --retries=3 \
+  CMD node -e "fetch('http://127.0.0.1:3000/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
+
+CMD ["node", "src/server.js"]

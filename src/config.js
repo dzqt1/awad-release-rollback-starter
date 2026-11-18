@@ -1,9 +1,8 @@
-// v1 configuration. Every environment gets the same values, because they are written here.
 export const config = {
-  env: 'development',
+  env: process.env.APP_ENV ?? 'development',
   port: 3000,
-  dbPath: './data/app.db',
-  baseUrl: 'http://localhost:3000',
-  adminToken: 'dev-secret',
+  dbPath: process.env.DB_PATH ?? './data/app.db',
+  baseUrl: process.env.BASE_URL ?? 'http://localhost:3000',
+  adminToken: process.env.ADMIN_TOKEN,
   version: process.env.APP_VERSION ?? 'dev',
 };

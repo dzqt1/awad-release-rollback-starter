@@ -16,14 +16,6 @@ async function readBody(req) {
 const isUrl = (u) => typeof u === 'string' && /^https?:\/\/\S+$/.test(u);
 
 export function createApp(db, config) {
-  const q = {
-    insert: db.prepare('INSERT INTO links (code, url) VALUES (?, ?)'),
-    get: db.prepare('SELECT code, url, hits FROM links WHERE code = ?'),
-    list: db.prepare('SELECT code, url, hits FROM links ORDER BY id DESC LIMIT ? OFFSET ?'),
-    hit: db.prepare('UPDATE links SET hits = hits + 1 WHERE code = ?'),
-    ping: db.prepare('SELECT 1'),
-  };
-
   const view = (row) => ({
     code: row.code,
     url: row.url,
@@ -43,7 +35,7 @@ export function createApp(db, config) {
     const parts = url.pathname.split('/').filter(Boolean);
 
     if (req.method === 'GET' && url.pathname === '/health') {
-      q.ping.get();
+      db.prepare('SELECT 1').get();
       return json(res, 200, { ok: true });
     }
     if (req.method === 'GET' && url.pathname === '/version') {
@@ -60,27 +52,27 @@ export function createApp(db, config) {
       if (req.method === 'GET') {
         const limit = Math.min(Number(url.searchParams.get('limit') ?? 20), 100);
         const offset = Number(url.searchParams.get('offset') ?? 0);
-        return json(res, 200, q.list.all(limit, offset).map(view));
+        return json(res, 200, db.prepare('SELECT code, url, hits FROM links ORDER BY id DESC LIMIT ? OFFSET ?').all(limit, offset).map(view));
       }
       if (req.method === 'POST') {
         const body = await readBody(req);
         if (!body || !isUrl(body.url)) return error(res, 400, 'invalid_body', 'url (http or https) is required');
         const code = newCode();
-        q.insert.run(code, body.url);
-        return json(res, 201, view(q.get.get(code)));
+        db.prepare('INSERT INTO links (code, url) VALUES (?, ?)').run(code, body.url);
+        return json(res, 201, view(db.prepare('SELECT code, url, hits FROM links WHERE code = ?').get(code)));
       }
     }
 
     if (req.method === 'GET' && parts[0] === 'links' && parts.length === 2) {
-      const row = q.get.get(parts[1]);
+      const row = db.prepare('SELECT code, url, hits FROM links WHERE code = ?').get(parts[1]);
       if (!row) return error(res, 404, 'not_found', `no link ${parts[1]}`);
       return json(res, 200, view(row));
     }
 
     if (req.method === 'GET' && parts[0] === 'r' && parts.length === 2) {
-      const row = q.get.get(parts[1]);
+      const row = db.prepare('SELECT code, url, hits FROM links WHERE code = ?').get(parts[1]);
       if (!row) return error(res, 404, 'not_found', `no link ${parts[1]}`);
-      q.hit.run(row.code);
+      db.prepare('UPDATE links SET hits = hits + 1 WHERE code = ?').run(row.code);
       res.writeHead(302, { location: row.url });
       return res.end();
     }
